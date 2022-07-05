@@ -2,13 +2,14 @@ import { useState } from 'react'
 
 import '../src/styles/Global.css'
 import { Checkbox } from './components/Check'
+import { Header } from './components/Header'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div>
-      <h1>Todo List</h1>
+      <Header />
       <Checkbox />
     </div>
   )
