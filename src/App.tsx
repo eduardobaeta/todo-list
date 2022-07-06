@@ -59,6 +59,11 @@ function App() {
     setTasks(tasksCopy);
   }
 
+  function onDeleteTask(id: number) {
+    const tasksWithoutTaskDeleted = tasks.filter(task => task.id !== id);
+    setTasks(tasksWithoutTaskDeleted);
+  }
+
   return (
     <div className={styles.container}>
       <Header />
@@ -102,7 +107,8 @@ function App() {
                 return (<Task
                   key={task.id}
                   taskProps={task}
-                  updateIsDone={onIsDone}
+                  updateIsDoneFunction={onIsDone}
+                  deleteTaskFunction={onDeleteTask}
                 />)
               })
             )}

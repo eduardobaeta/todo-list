@@ -7,7 +7,8 @@ import { TaskProps } from '../@types'
 
 type taskProps = {
   taskProps: TaskProps;
-  updateIsDone: (id: number, status: boolean) => void;
+  updateIsDoneFunction: (id: number, status: boolean) => void;
+  deleteTaskFunction: (id: number) => void;
 }
 
 export function Task(props: taskProps) {
@@ -16,7 +17,11 @@ export function Task(props: taskProps) {
 
   function handleSetIsDone() {
     setIsDone(!isDone)
-    props.updateIsDone(props.taskProps.id, !isDone)
+    props.updateIsDoneFunction(props.taskProps.id, !isDone)
+  }
+
+  function handleDeleteTask() {
+    props.deleteTaskFunction(props.taskProps.id);
   }
 
   return (
@@ -37,7 +42,7 @@ export function Task(props: taskProps) {
           </p>
         )
       }
-      <MdOutlineDeleteOutline className={styles.deleteIcon} size={24} />
+      <MdOutlineDeleteOutline onClick={handleDeleteTask} className={styles.deleteIcon} size={24} />
     </div>
   )
 }
