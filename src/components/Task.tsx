@@ -7,8 +7,8 @@ import { TaskProps } from '../@types'
 
 type taskProps = {
   taskProps: TaskProps;
-  updateIsDoneFunction: (id: number, status: boolean) => void;
-  deleteTaskFunction: (id: number) => void;
+  updateIsDoneFunction: (id: string, status: boolean) => void;
+  deleteTaskFunction: (id: string) => void;
 }
 
 export function Task(props: taskProps) {

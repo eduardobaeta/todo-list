@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { MdOutlineAddCircleOutline } from 'react-icons/md'
+import React, { useState } from 'react';
+import { MdOutlineAddCircleOutline } from 'react-icons/md';
+import { v4 as uuidv4 } from 'uuid';
 import { Task } from './components/Task';
-import { Header } from './components/Header'
+import { Header } from './components/Header';
 import { TaskProps } from './@types';
 
 import styles from '../src/App.module.css'
@@ -11,31 +12,33 @@ function App() {
 
   const [tasks, setTasks] = useState([
     {
-      id: 1,
+      id: '4b5a29f8-fd6a-11ec-b939-0242ac120002',
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum ex nisi, eget consequat urna pulvinar nec. Integer vestibulum massa eu massa placerat, ut molestie dui hendrerit. Sed eu tellus vestibulum, semper nibh non, volutpat arcu.",
       isDone: true
     },
     {
-      id: 2,
+      id: '4628d588-fd6a-11ec-b939-0242ac120002',
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum ex nisi, eget consequat urna pulvinar nec. Integer vestibulum massa eu massa placerat, ut molestie dui hendrerit. Sed eu tellus vestibulum, semper nibh non, volutpat arcu.",
       isDone: true
     },
     {
-      id: 3,
+      id: '412c21d4-fd6a-11ec-b939-0242ac120002',
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum ex nisi, eget consequat urna pulvinar nec. Integer vestibulum massa eu massa placerat, ut molestie dui hendrerit. Sed eu tellus vestibulum, semper nibh non, volutpat arcu.",
       isDone: false
     },
     {
-      id: 4,
+      id: '3acfcf16-fd6a-11ec-b939-0242ac120002',
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum ex nisi, eget consequat urna pulvinar nec. Integer vestibulum massa eu massa placerat, ut molestie dui hendrerit. Sed eu tellus vestibulum, semper nibh non, volutpat arcu.",
       isDone: false
     },
     {
-      id: 5,
+      id: '34f809dc-fd6a-11ec-b939-0242ac120002',
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum ex nisi, eget consequat urna pulvinar nec. Integer vestibulum massa eu massa placerat, ut molestie dui hendrerit. Sed eu tellus vestibulum, semper nibh non, volutpat arcu.",
       isDone: false
     }
   ]);
+
+  const [textInput, setTextInput] = useState('');
 
   const tasksOrderByIsDone = tasks.sort((x, y) => {
     let a = x.isDone;
@@ -52,14 +55,30 @@ function App() {
 
   const isTasksVoid = tasks.length === 0;
 
-  function onIsDone(id: number, status: boolean) {
+  function handleTextInput(event: React.FormEvent<HTMLInputElement>) {
+    setTextInput(event.currentTarget.value);
+  }
+
+  function handleCreateTask() {
+    event?.preventDefault();
+    const updatedTasks: TaskProps[] = [...tasks,
+    {
+      id: uuidv4(),
+      content: textInput,
+      isDone: false
+    }]
+    setTasks(updatedTasks)
+    setTextInput('');
+  }
+
+  function onIsDone(id: string, status: boolean) {
     const tasksCopy = [...tasks];
     const indexTaskToSetIsDone = tasksCopy.findIndex(task => task.id === id);
     tasksCopy[indexTaskToSetIsDone].isDone = status;
     setTasks(tasksCopy);
   }
 
-  function onDeleteTask(id: number) {
+  function onDeleteTask(id: string) {
     const tasksWithoutTaskDeleted = tasks.filter(task => task.id !== id);
     setTasks(tasksWithoutTaskDeleted);
   }
@@ -69,8 +88,8 @@ function App() {
       <Header />
 
       <main className={styles.content}>
-        <form className={styles.createTaskBar}>
-          <input type="text" placeholder='Adicione uma nova tarefa' />
+        <form onSubmit={handleCreateTask} className={styles.createTaskBar}>
+          <input required onChange={handleTextInput} value={textInput} type="text" placeholder='Adicione uma nova tarefa' />
           <button>
             Criar
             <MdOutlineAddCircleOutline size={16} />
