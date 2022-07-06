@@ -26,4 +26,11 @@
 
 .deleteIcon {
   fill: var(--gray-300);
+  transition: 0.5s;
+}
+
+.deleteIcon:hover {
+  fill: var(--red-300);
+  border-radius: 4px;
+  background-color: var(--gray-400);
 }
