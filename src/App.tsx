@@ -4,10 +4,11 @@ import { Header } from './components/Header'
 
 import styles from '../src/App.module.css'
 import '../src/styles/Global.css'
+import { Task } from './components/Task';
 
 function App() {
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([1]);
 
   const isTasksVoid = tasks.length === 0;
 
@@ -45,7 +46,7 @@ function App() {
             </p>
           </div>)
             :
-            ''
+            <Task />
           }
 
         </div>

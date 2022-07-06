@@ -1,4 +1,4 @@
-import styles from './Check.module.css'
+import styles from './Checkbox.module.css'
 
 export function Checkbox() {
   return (
