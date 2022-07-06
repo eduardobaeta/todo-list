@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { MdOutlineAddCircleOutline } from 'react-icons/md'
 import { Task } from './components/Task';
 import { Header } from './components/Header'
 import { TaskProps } from './@types';
@@ -67,6 +68,7 @@ function App() {
           <input type="text" placeholder='Adicione uma nova tarefa' />
           <button>
             Criar
+            <MdOutlineAddCircleOutline size={16} />
           </button>
         </form>
 

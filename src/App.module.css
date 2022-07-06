@@ -30,6 +30,9 @@
 }
 
 .createTaskBar button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: var(--blue-700);
@@ -39,6 +42,12 @@
   font-size: 0.875rem;
   font-weight: bold;
   line-height: 1.4;
+
+  transition: 0.3s;
+}
+
+.createTaskBar button:hover {
+  background-color: var(--blue-500);
 }
 
 .headerTasksContainer {
