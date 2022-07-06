@@ -1,0 +1,102 @@
+.container {
+  display: block;
+}
+
+.content {
+  max-width: 48rem;
+  min-height: 20rem;
+  margin: auto;
+}
+
+.createTaskBar {
+  width: 100%;
+  gap: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.createTaskBar input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--gray-500);
+  border: 1px solid var(--gray-700);
+
+  color: var(--gray-300);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.createTaskBar button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--blue-700);
+  border: none;
+
+  color: var(--gray-100);
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.headerTasksContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.createdTasks strong {
+  color: var(--blue-500);
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.createdTasks span {
+  background-color: var(--gray-400);
+  border-radius: 100%;
+  padding: 0.125rem 0.5rem;
+
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--gray-100);
+  margin-left: 0.5rem;
+}
+
+.doneTasks strong {
+  color: var(--purple-500);
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.doneTasks span {
+  background-color: var(--gray-400);
+  border-radius: 100%;
+  padding: 0.125rem 0.5rem;
+
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--gray-100);
+  margin-left: 0.5rem;
+}
+
+.voidTasks {
+  max-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 00.875rem;
+
+  padding: 4rem 1.5rem;
+  box-shadow: 0px -1px 0px 0px var(--gray-300);
+}
+
+.voidTasks img {
+  margin-bottom: 1rem;
+}
+
+.voidTasks p {
+  color: var(--gray-300);
+  font-size: 1rem;
+}
