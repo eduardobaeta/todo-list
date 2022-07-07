@@ -26,7 +26,10 @@ export function Task({ task, onDeleteTask, onUpdateIsDone }: TaskProps) {
 
   return (
     <div className={styles.container}>
-      <Checkbox onChange={handleSetIsDone} checked={isDone} />
+      <Checkbox
+        onChange={handleSetIsDone}
+        checked={isDone}
+      />
       {isDone ?
         (
           <p className={styles.labelDone}>
@@ -42,7 +45,11 @@ export function Task({ task, onDeleteTask, onUpdateIsDone }: TaskProps) {
           </p>
         )
       }
-      <MdOutlineDeleteOutline onClick={handleDeleteTask} className={styles.deleteIcon} size={24} />
+      <MdOutlineDeleteOutline
+        onClick={handleDeleteTask}
+        className={styles.deleteIcon}
+        size={24}
+      />
     </div>
   )
 }

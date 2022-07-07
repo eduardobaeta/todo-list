@@ -7,6 +7,11 @@ type checkBoxProps = {
 
 export function Checkbox(props: checkBoxProps) {
   return (
-    <input className={styles.checkbox} onChange={props.onChange} checked={props.checked} type="checkbox" />
+    <input
+      className={styles.checkbox}
+      onChange={props.onChange}
+      checked={props.checked}
+      type="checkbox"
+    />
   )
 }
