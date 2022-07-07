@@ -24,6 +24,18 @@
   font-size: 0.875rem;
 }
 
+.deleteIconButton {
+  background: none;
+  border: none;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.deleteIconButton:focus {
+  border-radius: 4px;   
+  outline: 1px solid var(--purple-700);
+}
+
 .deleteIcon {
   fill: var(--gray-300);
   transition: 0.5s;

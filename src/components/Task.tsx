@@ -45,11 +45,13 @@ export function Task({ task, onDeleteTask, onUpdateIsDone }: TaskProps) {
           </p>
         )
       }
-      <MdOutlineDeleteOutline 
-      onClick={handleDeleteTask} 
-      className={styles.deleteIcon} 
-      size={24} 
-      />
+      <button className={styles.deleteIconButton}>
+        <MdOutlineDeleteOutline
+          onClick={handleDeleteTask}
+          className={styles.deleteIcon}
+          size={24}
+        />
+      </button>
     </div>
   )
 }
