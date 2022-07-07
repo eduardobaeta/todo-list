@@ -11,17 +11,17 @@ interface TaskProps {
   onDeleteTask: (id: string) => void;
 }
 
-export function Task(props: TaskProps) {
+export function Task({ task, onDeleteTask, onUpdateIsDone }: TaskProps) {
 
-  const [isDone, setIsDone] = useState(props.task.isDone)
+  const [isDone, setIsDone] = useState(task.isDone)
 
   function handleSetIsDone() {
     setIsDone(!isDone)
-    props.onUpdateIsDone(props.task.id, !isDone)
+    onUpdateIsDone(task.id, !isDone)
   }
 
   function handleDeleteTask() {
-    props.onDeleteTask(props.task.id);
+    onDeleteTask(task.id);
   }
 
   return (
@@ -31,14 +31,14 @@ export function Task(props: TaskProps) {
         (
           <p className={styles.labelDone}>
             <s>
-              {props.task.content}
+              {task.content}
             </s>
           </p>
         )
         :
         (
           <p className={styles.label}>
-            {props.task.content}
+            {task.content}
           </p>
         )
       }

@@ -59,7 +59,7 @@ function App() {
     setTextInput(event.currentTarget.value);
   }
 
-  function handleCreateTask(event: SubmitEvent) {
+  function handleCreateTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const updatedTasks: TaskType[] = [...tasks,
     {
@@ -88,8 +88,8 @@ function App() {
       <Header />
 
       <main className={styles.content}>
-        <form onSubmit={() => handleCreateTask} className={styles.createTaskBar}>
-          <input required onChange={() => { handleTextInput }} value={textInput} type="text" placeholder='Adicione uma nova tarefa' />
+        <form onSubmit={handleCreateTask} className={styles.createTaskBar}>
+          <input required onChange={handleTextInput} value={textInput} type="text" placeholder='Adicione uma nova tarefa' />
           <button>
             Criar
             <MdOutlineAddCircleOutline size={16} />
