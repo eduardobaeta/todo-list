@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Checkbox } from './Checkbox'
 import { MdOutlineDeleteOutline } from 'react-icons/md'
+import { TaskProps } from '../@types'
 
 import styles from './Task.module.css'
-import { TaskProps } from '../@types'
 
 type taskProps = {
   taskProps: TaskProps;

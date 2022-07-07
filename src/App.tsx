@@ -59,8 +59,8 @@ function App() {
     setTextInput(event.currentTarget.value);
   }
 
-  function handleCreateTask() {
-    event?.preventDefault();
+  function handleCreateTask(event: SubmitEvent) {
+    event.preventDefault();
     const updatedTasks: TaskProps[] = [...tasks,
     {
       id: uuidv4(),
@@ -88,7 +88,7 @@ function App() {
       <Header />
 
       <main className={styles.content}>
-        <form onSubmit={handleCreateTask} className={styles.createTaskBar}>
+        <form onSubmit={() => handleCreateTask} className={styles.createTaskBar}>
           <input required onChange={handleTextInput} value={textInput} type="text" placeholder='Adicione uma nova tarefa' />
           <button>
             Criar
