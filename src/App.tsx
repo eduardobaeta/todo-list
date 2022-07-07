@@ -46,6 +46,8 @@ function App() {
     return a == b ? 0 : a > b ? 1 : -1;
   });
 
+  const isTextInputEmpty = textInput.length === 0;
+
   const totalTasks = tasks.length;
 
   const totalDoneTasks = tasks.reduce((result: TaskType[], task) => {
@@ -57,6 +59,11 @@ function App() {
 
   function handleTextInput(event: ChangeEvent<HTMLInputElement>) {
     setTextInput(event.currentTarget.value);
+    event.target.setCustomValidity('');
+  }
+
+  function handleNewTaskInvalid(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Para criar a tarefa você precisa preencher seu conteúdo');
   }
 
   function handleCreateTask(event: FormEvent<HTMLFormElement>) {
@@ -94,11 +101,14 @@ function App() {
         >
           <input
             required
+            onInvalid={handleNewTaskInvalid}
             onChange={handleTextInput}
             value={textInput} type="text"
             placeholder='Adicione uma nova tarefa'
           />
-          <button>
+          <button
+            disabled={isTextInputEmpty}
+          >
             Criar
             <MdOutlineAddCircleOutline size={16} />
           </button>
