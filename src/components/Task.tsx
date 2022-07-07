@@ -1,27 +1,27 @@
 import { useState } from 'react'
 import { Checkbox } from './Checkbox'
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { TaskProps } from '../@types'
+import { TaskType } from '../@types'
 
 import styles from './Task.module.css'
 
-type taskProps = {
-  taskProps: TaskProps;
+interface TaskProps {
+  task: TaskType;
   updateIsDoneFunction: (id: string, status: boolean) => void;
   deleteTaskFunction: (id: string) => void;
 }
 
-export function Task(props: taskProps) {
+export function Task(props: TaskProps) {
 
-  const [isDone, setIsDone] = useState(props.taskProps.isDone)
+  const [isDone, setIsDone] = useState(props.task.isDone)
 
   function handleSetIsDone() {
     setIsDone(!isDone)
-    props.updateIsDoneFunction(props.taskProps.id, !isDone)
+    props.updateIsDoneFunction(props.task.id, !isDone)
   }
 
   function handleDeleteTask() {
-    props.deleteTaskFunction(props.taskProps.id);
+    props.deleteTaskFunction(props.task.id);
   }
 
   return (
@@ -31,14 +31,14 @@ export function Task(props: taskProps) {
         (
           <p className={styles.labelDone}>
             <s>
-              {props.taskProps.content}
+              {props.task.content}
             </s>
           </p>
         )
         :
         (
           <p className={styles.label}>
-            {props.taskProps.content}
+            {props.task.content}
           </p>
         )
       }

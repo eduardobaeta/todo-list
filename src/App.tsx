@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import { Task } from './components/Task';
 import { Header } from './components/Header';
-import { TaskProps } from './@types';
+import { TaskType } from './@types';
 
 import styles from '../src/App.module.css'
 import '../src/styles/Global.css'
@@ -48,20 +48,20 @@ function App() {
 
   const totalTasks = tasks.length;
 
-  const totalDoneTasks = tasks.reduce((result: TaskProps[], task) => {
+  const totalDoneTasks = tasks.reduce((result: TaskType[], task) => {
     task.isDone && result.push(task);
     return result;
   }, []).length;
 
   const isTasksVoid = tasks.length === 0;
 
-  function handleTextInput(event: React.FormEvent<HTMLInputElement>) {
+  function handleTextInput(event: ChangeEvent<HTMLInputElement>) {
     setTextInput(event.currentTarget.value);
   }
 
   function handleCreateTask(event: SubmitEvent) {
     event.preventDefault();
-    const updatedTasks: TaskProps[] = [...tasks,
+    const updatedTasks: TaskType[] = [...tasks,
     {
       id: uuidv4(),
       content: textInput,
@@ -71,10 +71,10 @@ function App() {
     setTextInput('');
   }
 
-  function onIsDone(id: string, status: boolean) {
+  function onIsDone(id: string, isDonestatus: boolean) {
     const tasksCopy = [...tasks];
     const indexTaskToSetIsDone = tasksCopy.findIndex(task => task.id === id);
-    tasksCopy[indexTaskToSetIsDone].isDone = status;
+    tasksCopy[indexTaskToSetIsDone].isDone = isDonestatus;
     setTasks(tasksCopy);
   }
 
@@ -89,7 +89,7 @@ function App() {
 
       <main className={styles.content}>
         <form onSubmit={() => handleCreateTask} className={styles.createTaskBar}>
-          <input required onChange={handleTextInput} value={textInput} type="text" placeholder='Adicione uma nova tarefa' />
+          <input required onChange={() => { handleTextInput }} value={textInput} type="text" placeholder='Adicione uma nova tarefa' />
           <button>
             Criar
             <MdOutlineAddCircleOutline size={16} />
@@ -125,7 +125,7 @@ function App() {
               tasksOrderByIsDone.map(task => {
                 return (<Task
                   key={task.id}
-                  taskProps={task}
+                  task={task}
                   updateIsDoneFunction={onIsDone}
                   deleteTaskFunction={onDeleteTask}
                 />)
