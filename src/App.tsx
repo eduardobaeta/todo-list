@@ -71,14 +71,14 @@ function App() {
     setTextInput('');
   }
 
-  function onIsDone(id: string, isDonestatus: boolean) {
+  function updateIsDone(id: string, isDonestatus: boolean) {
     const tasksCopy = [...tasks];
     const indexTaskToSetIsDone = tasksCopy.findIndex(task => task.id === id);
     tasksCopy[indexTaskToSetIsDone].isDone = isDonestatus;
     setTasks(tasksCopy);
   }
 
-  function onDeleteTask(id: string) {
+  function deleteTask(id: string) {
     const tasksWithoutTaskDeleted = tasks.filter(task => task.id !== id);
     setTasks(tasksWithoutTaskDeleted);
   }
@@ -126,8 +126,8 @@ function App() {
                 return (<Task
                   key={task.id}
                   task={task}
-                  updateIsDoneFunction={onIsDone}
-                  deleteTaskFunction={onDeleteTask}
+                  onUpdateIsDone={updateIsDone}
+                  onDeleteTask={deleteTask}
                 />)
               })
             )}

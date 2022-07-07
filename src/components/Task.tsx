@@ -7,8 +7,8 @@ import styles from './Task.module.css'
 
 interface TaskProps {
   task: TaskType;
-  updateIsDoneFunction: (id: string, status: boolean) => void;
-  deleteTaskFunction: (id: string) => void;
+  onUpdateIsDone: (id: string, status: boolean) => void;
+  onDeleteTask: (id: string) => void;
 }
 
 export function Task(props: TaskProps) {
@@ -17,11 +17,11 @@ export function Task(props: TaskProps) {
 
   function handleSetIsDone() {
     setIsDone(!isDone)
-    props.updateIsDoneFunction(props.task.id, !isDone)
+    props.onUpdateIsDone(props.task.id, !isDone)
   }
 
   function handleDeleteTask() {
-    props.deleteTaskFunction(props.task.id);
+    props.onDeleteTask(props.task.id);
   }
 
   return (
